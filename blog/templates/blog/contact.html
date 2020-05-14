@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="container" style="margin-top: 100px;">
+        {% if envoi %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Youpi !</strong> Votre message a bien été envoyé.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <form action="{% url "contact" %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </form>
+    </div>
+{% endblock %}
